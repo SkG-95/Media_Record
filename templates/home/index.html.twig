@@ -1,20 +1,121 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Accueil - MediaRecord{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <!-- Hero Section -->
+    <section class="py-5 text-center container">
+        <div class="row py-lg-5">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <h1 class="fw-light">Bienvenue sur MediaRecord</h1>
+                <p class="lead text-muted">Découvrez, suivez et partagez vos films et séries préférés. Créez votre collection personnelle et gardez une trace de tout ce que vous regardez.</p>
+                <div class="d-flex justify-content-center gap-2">
+                    <a href="{{ path('app_search') }}" class="btn btn-primary my-2">Rechercher un titre</a>
+                    {% if not app.user %}
+                        <a href="{{ path('app_register') }}" class="btn btn-secondary my-2">Créer un compte</a>
+                    {% else %}
+                        <a href="{{ path('app_favorites') }}" class="btn btn-secondary my-2">Mes favoris</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <!-- Films populaires -->
+    <section class="py-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2>Films populaires</h2>
+            <a href="{{ path('app_search', {'type': 'movie'}) }}" class="btn btn-sm btn-outline-primary">Voir plus</a>
+        </div>
+        
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+            {% for i in 1..4 %}
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        <img src="https://via.placeholder.com/300x450?text=Film+{{ i }}" class="card-img-top" alt="Affiche du film">
+                        <div class="card-body">
+                            <h5 class="card-title">Titre du film {{ i }}</h5>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">2023</small>
+                                <div class="btn-group">
+                                    <a href="#" class="btn btn-sm btn-outline-secondary">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
+                                    <a href="#" class="btn btn-sm btn-outline-secondary">
+                                        <i class="bi bi-heart"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/Users/ryanchaibat/Desktop/Media_Record/www/src/Controller/HomeController.php</code></li>
-        <li>Your template at <code>/Users/ryanchaibat/Desktop/Media_Record/www/templates/home/index.html.twig</code></li>
-    </ul>
-</div>
+    <!-- Séries populaires -->
+    <section class="py-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2>Séries populaires</h2>
+            <a href="{{ path('app_search', {'type': 'tv'}) }}" class="btn btn-sm btn-outline-primary">Voir plus</a>
+        </div>
+        
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+            {% for i in 1..4 %}
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        <img src="https://via.placeholder.com/300x450?text=Série+{{ i }}" class="card-img-top" alt="Affiche de la série">
+                        <div class="card-body">
+                            <h5 class="card-title">Titre de la série {{ i }}</h5>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">2023</small>
+                                <div class="btn-group">
+                                    <a href="#" class="btn btn-sm btn-outline-secondary">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
+                                    <a href="#" class="btn btn-sm btn-outline-secondary">
+                                        <i class="bi bi-heart"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Fonctionnalités -->
+    <section class="py-5">
+        <h2 class="text-center mb-4">Fonctionnalités</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <i class="bi bi-search display-4 text-primary"></i>
+                        <h3 class="card-title h5 mt-3">Découvrir</h3>
+                        <p class="card-text">Explorez des milliers de films et séries. Trouvez de nouvelles idées pour vos soirées cinéma.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <i class="bi bi-bookmark-heart display-4 text-primary"></i>
+                        <h3 class="card-title h5 mt-3">Suivre</h3>
+                        <p class="card-text">Gardez une trace de ce que vous avez regardé et de ce que vous voulez voir prochainement.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <i class="bi bi-star display-4 text-primary"></i>
+                        <h3 class="card-title h5 mt-3">Noter</h3>
+                        <p class="card-text">Donnez votre avis et partagez vos critiques sur vos films et séries préférés.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}

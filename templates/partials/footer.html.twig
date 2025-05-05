@@ -1,0 +1,36 @@
+{# templates/partials/footer.html.twig #}
+<footer id="site-footer" class="bg-dark text-white py-4 w-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h5>MediaRecord</h5>
+                <p class="text-muted">Votre plateforme pour suivre vos films et séries préférés.</p>
+            </div>
+            <div class="col-md-4">
+                <h5>Liens rapides</h5>
+                <ul class="list-unstyled">
+                    <li><a href="{{ path('app_home') }}" class="text-white">Accueil</a></li>
+                    <li><a href="{{ path('app_search') }}" class="text-white">Recherche</a></li>
+                    {% if app.user %}
+                        <li><a href="{{ path('app_favorites') }}" class="text-white">Mes favoris</a></li>
+                    {% else %}
+                        <li><a href="{{ path('app_login') }}" class="text-white">Connexion</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h5>Légal</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-white">Mentions légales</a></li>
+                    <li><a href="#" class="text-white">Politique de confidentialité</a></li>
+                    <li><a href="#" class="text-white">CGU</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+        <div class="text-center">
+            <p class="mb-0">&copy; {{ "now"|date("Y") }} MediaRecord. Tous droits réservés.</p>
+            <small class="text-muted">Propulsé par l'API TMDB</small>
+        </div>
+    </div>
+</footer>
